@@ -24,7 +24,7 @@ def signup(request):
       user = form.save()
       # This is how we log a user in via code
       login(request, user)
-      return redirect('home')
+      return redirect('profile_creation')
     else:
       error_message = 'Invalid sign up - try again'
   # A GET or a bad POST request, so render signup.html with an empty form
@@ -35,8 +35,8 @@ def signup(request):
 @login_required  
 def profile(request):
   profile = User.objects.get(id=request.user.id)
-  print(profile)
-  return render(request, 'profile/profile.html', {'user':profile})
+  user_info = Profile.objects.get(user_id=request.user.id)
+  return render(request, 'profile/profile.html', {'user':profile, 'user_info':user_info})
 
 @login_required
 def profile_creation(request):
@@ -49,7 +49,7 @@ def profile_creation(request):
     new_profile.user = request.user
     new_profile.save()
     # redirect to index
-    return redirect('home')
+    return redirect('profile')
   else:
     # render the page with the new cat form
     return render(request, 'profile/profileCreation.html', { 'profile_form': profile_form })

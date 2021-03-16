@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>Create Your Profile</p>
+<p>We want to make your experience unique!</p>
+<p>To do so, we just need a little more information about yourself.</p>
+
+<form method="POST" action=" {% url 'profile_creation' %} ">
+    {% csrf_token %}
+    {{profile_form.as_p}}
+    <input type="submit" class="btn" value="Create Profile">
+    <input type="hidden" name="next" value="{{ next }}">
+</form>
+
+
+{% endblock content %}

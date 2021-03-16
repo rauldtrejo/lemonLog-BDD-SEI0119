@@ -17,3 +17,11 @@ class Comment(models.Model):
     creation_date = models.DateField()
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_age = models.IntegerField()
+    location = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user_age
+

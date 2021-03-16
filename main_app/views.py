@@ -1,4 +1,4 @@
-from main_app.forms import ProfileForm, SignupForm
+from main_app.forms import ProfileForm, SignupForm, EditForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -34,9 +34,19 @@ def signup(request):
 
 @login_required  
 def profile(request):
-  profile = User.objects.get(id=request.user.id)
+  
+  user = User.objects.get(id=request.user.id)
+  profile = Profile.objects.get(user_id=request.user.id)
   user_info = Profile.objects.get(user_id=request.user.id)
-  return render(request, 'profile/profile.html', {'user':profile, 'user_info':user_info})
+  user_form = EditForm(request.POST or None, instance=user)
+  profile_form=ProfileForm(request.POST or None, instance=profile)
+  context = {
+    'user':user, 
+    'user_info':user_info, 
+    'user_form':user_form,
+    'profile_form':profile_form,
+  }
+  return render(request, 'profile/profile.html', context)
 
 @login_required
 def profile_creation(request):
@@ -53,5 +63,22 @@ def profile_creation(request):
   else:
     # render the page with the new cat form
     return render(request, 'profile/profileCreation.html', { 'profile_form': profile_form })
+
+@login_required
+def profile_edit(request):
+  # get a reference to a cat
+  user = User.objects.get(id=request.user.id)
+  profile = Profile.objects.get(user_id=request.user.id)
+  # build a form for the cat filling it with values from the instance or values from the POST request
+  user_form = EditForm(request.POST or None, instance=user)
+  profile_form=ProfileForm(request.POST or None, instance=profile)
+  if request.POST and user_form.is_valid() and profile_form.is_valid():
+    # save changes to the cat
+    user_form.save()
+    profile_form.save()
+    # redirect to the detail page
+    return redirect('profile')
+  else:
+    return redirect('profile')
 
 

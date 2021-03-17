@@ -11,8 +11,10 @@ class Article(models.Model):
     rating = models.IntegerField()
     brand = models.CharField(max_length=100)
     product_name = models.CharField(max_length=100)
+    title = models.CharField(max_length=150)
 
-
+    def __str__(self):
+        return self.product_name
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

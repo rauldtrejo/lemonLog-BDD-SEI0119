@@ -9,6 +9,8 @@ class Article(models.Model):
     creation_date = models.DateField()
     image_url = models.CharField(max_length=150)
     rating = models.IntegerField()
+    brand = models.CharField(max_length=100)
+    product_name = models.CharField(max_length=100)
 
 
 class Comment(models.Model):
@@ -23,5 +25,5 @@ class Profile(models.Model):
     location = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.user_age
+        return self.user.username
 

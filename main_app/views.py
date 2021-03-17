@@ -38,7 +38,7 @@ def profile(request):
   
   user = User.objects.get(id=request.user.id)
   profile = Profile.objects.get(user_id=request.user.id)
-  
+  comment = Comment.objects.filter(user_id=request.user.id)
   user_info = Profile.objects.get(user_id=request.user.id)
   user_form = EditForm(request.POST or None, instance=user)
   profile_form=ProfileForm(request.POST or None, instance=profile)
@@ -47,6 +47,7 @@ def profile(request):
     'user_info':user_info, 
     'user_form':user_form,
     'profile_form':profile_form,
+    'comment': comment
   }
   return render(request, 'profile/profile.html', context)
 
@@ -86,3 +87,18 @@ def profile_edit(request):
 def review(request, review_id):
   review = Article.objects.get(id=review_id)
   return render(request, 'article/review-expanded.html', {'review': review})
+
+
+def profile_public(request, username):
+  user = User.objects.get(username=username)
+  
+  user_info = Profile.objects.get(user_id=user.id)
+  comment = Comment.objects.filter(user_id=user.id)
+  
+  context = {
+    'user':user, 
+    'user_info':user_info, 
+    'comment': comment
+  }
+  return render(request, 'profile/public.html', context)
+

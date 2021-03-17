@@ -9,7 +9,8 @@ from django.contrib.auth import get_user_model
 # Create your views here.
 
 def home(request):
-  return render(request, 'home.html')
+  review = Article.objects.all()
+  return render(request, 'home.html', {'review': review})
 
 
 

@@ -23,7 +23,12 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{% url 'home' %}">Home</a></li>
-                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <li><a href="">Create an Article</a></li>
+                <li><a href=" {% url 'profile' %} ">Profile</a></li>
+                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                {% elif user.is_authenticated %}
+                <li><a href=" {% url 'profile' %} ">Profile</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
                 <li><a href=" {% url 'login' %}">Log In</a></li>

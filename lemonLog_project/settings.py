@@ -120,5 +120,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # Change to profile page when profile page is built.
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/profile/'
 LOGOUT_REDIRECT_URL = '/'

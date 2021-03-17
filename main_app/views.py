@@ -37,6 +37,7 @@ def profile(request):
   
   user = User.objects.get(id=request.user.id)
   profile = Profile.objects.get(user_id=request.user.id)
+  
   user_info = Profile.objects.get(user_id=request.user.id)
   user_form = EditForm(request.POST or None, instance=user)
   profile_form=ProfileForm(request.POST or None, instance=profile)

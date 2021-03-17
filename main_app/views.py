@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .models import User, Profile
+from .models import User, Profile, Article, Comment
 from django.contrib.auth import get_user_model
 
 # Create your views here.
@@ -82,4 +82,6 @@ def profile_edit(request):
   else:
     return redirect('profile')
 
-
+def review(request, review_id):
+  review = Article.objects.get(id=review_id)
+  return render(request, 'article/review-expanded.html', {'review': review})

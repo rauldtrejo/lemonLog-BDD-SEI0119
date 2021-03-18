@@ -65,7 +65,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
-    }
+    },
 ]
 
 WSGI_APPLICATION = 'lemonLog_project.wsgi.application'
@@ -79,10 +79,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'lemonLog',
         'USER': 'postgres',
-        'PASSWORD': ''
+        'PASSWORD': 'Caliboy.'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

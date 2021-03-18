@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main_app',
+    'pyuploadcare.dj',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,6 +69,12 @@ TEMPLATES = [
     },
 ]
 
+UPLOADCARE = {
+    'pub_key': '4117ecbb4292a7f86d00',
+    'secret': '0d20ab0e1bf52e6e18be',
+}
+
+
 WSGI_APPLICATION = 'lemonLog_project.wsgi.application'
 
 
@@ -100,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
 
 
 # Internationalization

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Post
+from .models import Profile, Post, Comment
 from django.contrib.auth.models import User
 from pyuploadcare.dj.forms import ImageField
 
@@ -25,3 +25,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('photo',)
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)

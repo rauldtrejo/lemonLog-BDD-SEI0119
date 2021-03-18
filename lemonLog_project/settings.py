@@ -85,8 +85,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'lemonLog',
-        'USER': 'postgres',
-        'PASSWORD': ''
     }
 }
 

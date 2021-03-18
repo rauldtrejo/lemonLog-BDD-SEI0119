@@ -5,7 +5,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import User, Profile, Article, Comment, Post
 from django.contrib.auth import get_user_model
-from .forms import PostForm
+from .forms import PostForm, CommentForm
+import datetime
+from datetime import date
 
 # Create your views here.
 
@@ -98,7 +100,9 @@ def profile_edit(request):
 # Ask about multiple reviews for the same product, if so change the prety url to ugly url
 def review(request, review_product):
   review = Article.objects.get(url=review_product)
-  return render(request, 'article/review-expanded.html', {'review': review})
+  comment = Comment.objects.filter(article_id = review.id)
+  add_comment_form = CommentForm(request.POST or None)
+  return render(request, 'article/review-expanded.html', {'review': review, 'comment': comment, 'add_comment_form': add_comment_form})
 
 
 def profile_public(request, username):
@@ -143,5 +147,17 @@ def photo_edit(request):
       post = Post.objects.all()
   except Post.DoesNotExist:
       post = None
-
   return redirect('profile')
+
+def add_comment(request, article_id):
+  article = Article.objects.get(id = article_id)
+  article_product = article.url
+  form = CommentForm(request.POST)
+  if form.is_valid():
+    new_comment = form.save(commit = False)
+    new_comment.user_id = request.user.id
+    new_comment.article_id = article_id
+    new_comment.creation_date = date.today()
+    new_comment.save()
+    
+  return redirect('review', article_product)

@@ -84,8 +84,9 @@ def profile_edit(request):
   else:
     return redirect('profile')
 
-def review(request, review_id):
-  review = Article.objects.get(id=review_id)
+# Ask about multiple reviews for the same product, if so change the prety url to ugly url
+def review(request, review_product):
+  review = Article.objects.get(url=review_product)
   return render(request, 'article/review-expanded.html', {'review': review})
 
 

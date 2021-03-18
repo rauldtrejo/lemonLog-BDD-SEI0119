@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<img src="{{ review.image_url }}">
+<p>{{ review.product_name }}</p>
+<p>{{ review.brand }}</p>
+<p>{{ review.rating }}/10</p>
+<p>{{ review.content }}</p>
+<p>{{ review.creation_date }}</p>
+
+{% for comment in review.comment_set.all  %}
+    <p>{{ comment.user.username }}</p>
+    <p>{{ comment.content }}</p>
+    <p>{{ comment.creation_date }}</p>
+    
+
+
+{% endfor %}
+
+{% endblock content %}
+

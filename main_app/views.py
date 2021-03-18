@@ -15,6 +15,8 @@ def home(request):
   review = Article.objects.all()
   return render(request, 'home.html', {'review': review})
 
+def about(request):
+  return render(request, 'about.html')
 
 
 def signup(request):
@@ -45,12 +47,16 @@ def profile(request):
   user_info = Profile.objects.get(user_id=request.user.id)
   user_form = EditForm(request.POST or None, instance=user)
   profile_form=ProfileForm(request.POST or None, instance=profile)
+  post = Post.objects.all()
+  form=PostForm(request.POST or None, instance=profile)
   context = {
     'user':user, 
     'user_info':user_info, 
     'user_form':user_form,
     'profile_form':profile_form,
-    'comment': comment
+    'comment': comment,
+    'form': form,
+    'post': post
   }
   return render(request, 'profile/profile.html', context)
 
@@ -112,7 +118,23 @@ def profile_public(request, username):
   }
   return render(request, 'profile/public.html', context)
 
-def test(request):
+# def test(request):
+#   if request.method == "POST":
+#       form = PostForm(request.POST)
+#       if form.is_valid():
+#           post = form.save(commit=False)
+#           post.save()
+#   else:
+#       form = PostForm()
+
+#   try:
+#       posts = Post.objects.all()
+#   except Post.DoesNotExist:
+#       posts = None
+
+#   return render(request, 'test.html', { 'posts': posts, 'form': form })
+
+def photo_edit(request):
   if request.method == "POST":
       form = PostForm(request.POST)
       if form.is_valid():
@@ -122,11 +144,10 @@ def test(request):
       form = PostForm()
 
   try:
-      posts = Post.objects.all()
+      post = Post.objects.all()
   except Post.DoesNotExist:
-      posts = None
-
-  return render(request, 'test.html', { 'posts': posts, 'form': form })
+      post = None
+  return redirect('profile')
 
 def add_comment(request, article_id):
   article = Article.objects.get(id = article_id)

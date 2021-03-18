@@ -19,6 +19,7 @@ bar 2/3 user comments section {% endcomment %}
               >{{review.title}}</span>
             <h6>{{review.product_name}} - {{review.brand}}</h6>
             <p class="grey-text text-darken-1">{{review.creation_date}}</p>
+            <!-- fix the text so its justified -->
             <p>{{review.content}}</p>
           </div>
         </div>
@@ -35,8 +36,8 @@ bar 2/3 user comments section {% endcomment %}
           <h5>{{comment.user.username}}</h5>
             <p class="grey-text text-darken-1" >{{comment.creation_date}}</p>
             
-            <!-- fix the text so its justified -->
-            <p style="text-align: justify !important;">{{comment.content}}</p> 
+            
+            <p>{{comment.content}}</p> 
           
           </div>
         </div>

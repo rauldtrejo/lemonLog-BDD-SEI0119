@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 {% comment %} 1/3 for profile side
 bar 2/3 user comments section {% endcomment %}
@@ -19,36 +19,21 @@ bar 2/3 user comments section {% endcomment %}
             <span class="card-title blue-text text-darken-2"
               >{{user.username}}</span>
             <h5>{{user.first_name}} {{user.last_name}}</h5>
-            <h5>{{user.email}}</h5>
+         
             <h5>User Joined:</h5>
             <h5>{{user.date_joined| date:"F d Y" }}</h5>
-            <h5>Age: {{user_info.user_age}}</h5>
+           
             <h5>{{user_info.location}}</h5>
           </div>
-          <div class="card-action">
-              <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Edit Your Info</a>
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-        {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
-        <form method="post" action="{% url 'profile_edit' %}">
-        {% csrf_token %}
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        <input type="submit" class="btn" value="Edit">
-        </form>
-    </div>
-  </div>
-          </div>
+          
         </div>
       </div>
     </div>
   </div>
   <div style="overflow-y: scroll; height: 100%" class="col m8">
     <div class="col s12 m12">
-      {% for comment in comment %}
+
+    {% for comment in comment %}
 
       <div class="card horizontal">
         <div class="card-stacked">
@@ -65,8 +50,8 @@ bar 2/3 user comments section {% endcomment %}
         </div>
       </div>
     
-    {% endfor %}   
-      </div>
+    {% endfor %}    
     </div>
-    
+
+          
 {% endblock content %}

@@ -3,13 +3,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .models import User, Profile
+from .models import User, Profile, Article, Comment
 from django.contrib.auth import get_user_model
 
 # Create your views here.
 
 def home(request):
-  return render(request, 'home.html')
+  review = Article.objects.all()
+  return render(request, 'home.html', {'review': review})
 
 
 
@@ -37,7 +38,7 @@ def profile(request):
   
   user = User.objects.get(id=request.user.id)
   profile = Profile.objects.get(user_id=request.user.id)
-  
+  comment = Comment.objects.filter(user_id=request.user.id)
   user_info = Profile.objects.get(user_id=request.user.id)
   user_form = EditForm(request.POST or None, instance=user)
   profile_form=ProfileForm(request.POST or None, instance=profile)
@@ -46,6 +47,7 @@ def profile(request):
     'user_info':user_info, 
     'user_form':user_form,
     'profile_form':profile_form,
+    'comment': comment
   }
   return render(request, 'profile/profile.html', context)
 
@@ -82,4 +84,22 @@ def profile_edit(request):
   else:
     return redirect('profile')
 
+# Ask about multiple reviews for the same product, if so change the prety url to ugly url
+def review(request, review_product):
+  review = Article.objects.get(url=review_product)
+  return render(request, 'article/review-expanded.html', {'review': review})
+
+
+def profile_public(request, username):
+  user = User.objects.get(username=username)
+  
+  user_info = Profile.objects.get(user_id=user.id)
+  comment = Comment.objects.filter(user_id=user.id)
+  
+  context = {
+    'user':user, 
+    'user_info':user_info, 
+    'comment': comment
+  }
+  return render(request, 'profile/public.html', context)
 

@@ -1,4 +1,4 @@
-{%  load static  %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,34 +23,55 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{% url 'home' %}">Home</a></li>
-                {% if user.is_superuser %}
+             
                 <li><a href="">Create an Article</a></li>
                 <li><a href=" {% url 'profile' %} ">Profile</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
-                {% elif user.is_authenticated %}
+               
                 <li><a href=" {% url 'profile' %} ">Profile</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
-                {% else %}
+                
                 <li><a href=" {% url 'login' %}">Log In</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                {% endif %}
+         
             </ul>
             </div>
         </nav>
         <ul class="sidenav" id="mobile-demo">
                 <li><a href="{% url 'home' %}">Home</a></li>
-                {% if user.is_authenticated %}
+                
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
-                {% else %}
+                
                 <li><a href=" {% url 'login' %}">Log In</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                {% endif %}
+         
         </ul>
     </header>
-    <main class='container'>
-    {% block content %}
-    
-    {% endblock content %}
+    <main class='article-container' id='whole-container'>
+    <!-- We'll have to figure out to how conditionally render the header to contain the Article title -->
+        <div class="expanded-container">
+            <div class="expanded-content">
+                <div class="intro-statement">
+                    <h3>Here is where text will go for the intro statement...</h3>
+                </div>
+                <div class="article-text">
+                    <p>Here is where the article text will go</p>
+                </div>
+                <!-- the comments div will act like a page seperator -->
+                <!-- I'm putting all the content info in this div -->
+                <!-- comment title should allow a user to scroll both of these smaller divs so that  -->
+            </div>
+        </div>
+        <div class="comments">
+            <div class="comment-title">
+                <h1 class="title-text">Comments</h1>
+            </div>
+            <div class="comment-container">
+                <div class="user-image"><img src="" alt="" class="cirlce"></div>
+                <p>Here is where the text will go that a user adds as a comment. I Imagine we will probably map through or 'forEach' this div to render all of the neccesarry divs</p>
+            </div>
+        </div>
+
     </main>
 
       <!--JavaScript at end of body for optimized loading-->

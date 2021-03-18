@@ -1,4 +1,6 @@
+
 {% extends 'base.html' %} 
+{% load new_time %}
 {% block content %}
 
  
@@ -12,11 +14,11 @@
         <div class="card-content">
           <span class="card-title">{{ review.product_name}} <span style="font-size: 14px;" class="right grey-text text-darken-1"> Author: {{ review.user.first_name }} {{ review.user.last_name }}
          </span></span>
-          <p>{{ review.content|truncatechars_html:250}}</p>
-          <p class="grey-text text-darken-1">Posted On: {{ review.creation_date}}</p> 
+          <p>{{ review.content|truncatechars_html:1000}}</p>
+          <p class="grey-text text-darken-1">Posted {{ review.creation_date|date_difference }} day(s) ago.</p> 
         </div>
         <div class="card-action">
-          <a href=" {% url 'review' review.id %}">Read more</a>
+          <a href=" {% url 'review' review.url %}">Read more</a>
         </div>
       </div>
     </div>

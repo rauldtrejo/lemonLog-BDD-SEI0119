@@ -1,4 +1,5 @@
 from django.db import models
+from pyuploadcare.dj.models import ImageField
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -33,5 +34,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Post(models.Model):
+    photo = ImageField(blank=True, manual_crop="")
 
 

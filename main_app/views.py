@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .models import User, Profile, Article, Comment
+from .models import User, Profile, Article, Comment, Post
 from django.contrib.auth import get_user_model
+from .forms import PostForm
 
 # Create your views here.
 
@@ -55,17 +56,21 @@ def profile(request):
 def profile_creation(request):
   # create new instance of cat form filled with submitted values or nothing
   profile_form = ProfileForm(request.POST or None)
+  form = PostForm(request.POST or None)
+
   # if the form was posted and valid
-  if request.POST and profile_form.is_valid():
+  if request.POST and profile_form.is_valid() and form.is_valid():
     # save new instance of a cat
     new_profile = profile_form.save(commit=False)
     new_profile.user = request.user
     new_profile.save()
+    post = form.save(commit=False)
+    post.save()
     # redirect to index
     return redirect('profile')
   else:
     # render the page with the new cat form
-    return render(request, 'profile/profileCreation.html', { 'profile_form': profile_form })
+    return render(request, 'profile/profileCreation.html', { 'profile_form': profile_form,'form':form })
 
 @login_required
 def profile_edit(request):
@@ -102,4 +107,20 @@ def profile_public(request, username):
     'comment': comment
   }
   return render(request, 'profile/public.html', context)
+
+def test(request):
+  if request.method == "POST":
+      form = PostForm(request.POST)
+      if form.is_valid():
+          post = form.save(commit=False)
+          post.save()
+  else:
+      form = PostForm()
+
+  try:
+      posts = Post.objects.all()
+  except Post.DoesNotExist:
+      posts = None
+
+  return render(request, 'test.html', { 'posts': posts, 'form': form })
 

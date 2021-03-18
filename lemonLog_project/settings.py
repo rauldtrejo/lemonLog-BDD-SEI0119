@@ -65,7 +65,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
-    },
+    }
 ]
 
 WSGI_APPLICATION = 'lemonLog_project.wsgi.application'
@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'lemonLog',
         'USER': 'postgres',
-        'PASSWORD': 'Caliboy.'
+        'PASSWORD': ''
     }
 }
 

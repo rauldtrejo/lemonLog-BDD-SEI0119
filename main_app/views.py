@@ -47,7 +47,8 @@ def profile(request):
   user_info = Profile.objects.get(user_id=request.user.id)
   user_form = EditForm(request.POST or None, instance=user)
   profile_form=ProfileForm(request.POST or None, instance=profile)
-  post = Post.objects.all()
+  post = Post.objects.filter(user_id=request.user.id).order_by('-id')[0]
+  print(post)
   form=PostForm(request.POST or None, instance=profile)
   context = {
     'user':user, 
@@ -136,17 +137,17 @@ def profile_public(request, username):
 
 def photo_edit(request):
   if request.method == "POST":
-      form = PostForm(request.POST)
-      if form.is_valid():
-          post = form.save(commit=False)
-          post.save()
+    form = PostForm(request.POST)
+    if form.is_valid():
+        post = form.save(commit=False) 
+        post.user_id = request.user.id
+        post.save()
   else:
-      form = PostForm()
-
+    form = PostForm()
   try:
-      post = Post.objects.all()
+    post = Post.objects.all()
   except Post.DoesNotExist:
-      post = None
+    post = None
   return redirect('profile')
 
 def add_comment(request, article_id):

@@ -47,7 +47,10 @@ def profile(request):
   user_info = Profile.objects.get(user_id=request.user.id)
   user_form = EditForm(request.POST or None, instance=user)
   profile_form=ProfileForm(request.POST or None, instance=profile)
-  post = Post.objects.filter(user_id=request.user.id).order_by('-id')[0]
+  if Post.objects.filter(user_id=request.user.id).order_by('-id'):
+    post = Post.objects.filter(user_id=request.user.id).order_by('-id')[0]
+  else:
+    post = None
   print(post)
   form=PostForm(request.POST or None, instance=profile)
   context = {
@@ -65,21 +68,17 @@ def profile(request):
 def profile_creation(request):
   # create new instance of cat form filled with submitted values or nothing
   profile_form = ProfileForm(request.POST or None)
-  form = PostForm(request.POST or None)
-
   # if the form was posted and valid
-  if request.POST and profile_form.is_valid() and form.is_valid():
+  if request.POST and profile_form.is_valid():
     # save new instance of a cat
     new_profile = profile_form.save(commit=False)
     new_profile.user = request.user
     new_profile.save()
-    post = form.save(commit=False)
-    post.save()
     # redirect to index
     return redirect('profile')
   else:
     # render the page with the new cat form
-    return render(request, 'profile/profileCreation.html', { 'profile_form': profile_form,'form':form })
+    return render(request, 'profile/profileCreation.html', { 'profile_form': profile_form, })
 
 @login_required
 def profile_edit(request):

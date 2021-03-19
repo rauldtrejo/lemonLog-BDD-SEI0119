@@ -109,17 +109,17 @@
             <a href="{% url 'review' comment.article.url %}">View Article</a>
             <a
               class="waves-effect waves-light btn modal-trigger edit-profile-btn"
-              href="#edit-comment"
-              >Edit Your Info</a
+              href="#edit-comment{{forloop.counter}}"
+              >Edit Comment</a
             >            
-            <div id="edit-comment" class="modal">
+            <div id="edit-comment{{forloop.counter}}" class="modal">
               <div class="modal-content">
                 {% if error_message %}
                 <p class="red-text">{{ error_message }}</p>
                 {% endif %}
                 <form method="post" action="{% url 'edit_comment' comment.id %}">
                   {% csrf_token %} 
-                  {{ comment_form.as_p }} 
+                  <input type="text" value="{{ comment.content }}" name="content" required>
                   <input type="submit" class="btn" value="Edit" />
                 </form>
               </div>

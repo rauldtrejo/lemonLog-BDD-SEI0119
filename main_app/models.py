@@ -20,12 +20,15 @@ class Article(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.CharField(max_length=300)
+    content = models.CharField(max_length=240)
     creation_date = models.DateField()
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
+
+    class Meta:
+        ordering = ['-id']
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

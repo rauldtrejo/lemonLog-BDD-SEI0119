@@ -37,5 +37,6 @@ class Profile(models.Model):
 
 class Post(models.Model):
     photo = ImageField(blank=True, manual_crop="")
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
 

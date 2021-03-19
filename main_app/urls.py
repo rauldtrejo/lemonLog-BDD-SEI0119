@@ -10,7 +10,8 @@ urlpatterns = [
     path('profile/edit/', views.profile_edit, name='profile_edit'),
     path('user/<str:username>/', views.profile_public, name='profile_public'),
     path('reviews/<str:review_product>/', views.review, name='review'),
-    # path('test/', views.test, name='test'),
     path('profile/photo_edit/', views.photo_edit, name='photo_edit'),
-    path('reviews/add_comment/<int:article_id>/', views.add_comment, name='add_comment')
+    path('reviews/add_comment/<int:article_id>/', views.add_comment, name='add_comment'),
+    path('reviews/delete_comment/<int:comment_id>/', views.delete_comment, name='delete_comment'),
+    path('reviews/edit_comment/<int:comment_id>/', views.edit_comment, name='edit_comment'),
 ]

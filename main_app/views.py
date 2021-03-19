@@ -44,10 +44,14 @@ def profile(request):
   user = User.objects.get(id=request.user.id)
   profile = Profile.objects.get(user_id=request.user.id)
   comment = Comment.objects.filter(user_id=request.user.id)
+  comment_form=CommentForm(request.POST or None)
   user_info = Profile.objects.get(user_id=request.user.id)
   user_form = EditForm(request.POST or None, instance=user)
   profile_form=ProfileForm(request.POST or None, instance=profile)
-  post = Post.objects.filter(user_id=request.user.id).order_by('-id')[0]
+  if Post.objects.filter(user_id=request.user.id).order_by('-id'):
+    post = Post.objects.filter(user_id=request.user.id).order_by('-id')[0]
+  else:
+    post = None
   print(post)
   form=PostForm(request.POST or None, instance=profile)
   context = {
@@ -55,6 +59,7 @@ def profile(request):
     'user_info':user_info, 
     'user_form':user_form,
     'profile_form':profile_form,
+    'comment_form':comment_form,
     'comment': comment,
     'form': form,
     'post': post
@@ -65,21 +70,17 @@ def profile(request):
 def profile_creation(request):
   # create new instance of cat form filled with submitted values or nothing
   profile_form = ProfileForm(request.POST or None)
-  form = PostForm(request.POST or None)
-
   # if the form was posted and valid
-  if request.POST and profile_form.is_valid() and form.is_valid():
+  if request.POST and profile_form.is_valid():
     # save new instance of a cat
     new_profile = profile_form.save(commit=False)
     new_profile.user = request.user
     new_profile.save()
-    post = form.save(commit=False)
-    post.save()
     # redirect to index
     return redirect('profile')
   else:
     # render the page with the new cat form
-    return render(request, 'profile/profileCreation.html', { 'profile_form': profile_form,'form':form })
+    return render(request, 'profile/profileCreation.html', { 'profile_form': profile_form, })
 
 @login_required
 def profile_edit(request):
@@ -108,33 +109,22 @@ def review(request, review_product):
 
 def profile_public(request, username):
   user = User.objects.get(username=username)
-  
   user_info = Profile.objects.get(user_id=user.id)
   comment = Comment.objects.filter(user_id=user.id)
+  if Post.objects.filter(user_id=user.id).order_by('-id'):
+    post = Post.objects.filter(user_id=user.id).order_by('-id')[0]
+  else:
+    post = None
   
   context = {
     'user':user, 
     'user_info':user_info, 
-    'comment': comment
+    'comment': comment,
+    'post':post,
   }
   return render(request, 'profile/public.html', context)
 
-# def test(request):
-#   if request.method == "POST":
-#       form = PostForm(request.POST)
-#       if form.is_valid():
-#           post = form.save(commit=False)
-#           post.save()
-#   else:
-#       form = PostForm()
-
-#   try:
-#       posts = Post.objects.all()
-#   except Post.DoesNotExist:
-#       posts = None
-
-#   return render(request, 'test.html', { 'posts': posts, 'form': form })
-
+@login_required
 def photo_edit(request):
   if request.method == "POST":
     form = PostForm(request.POST)
@@ -150,6 +140,7 @@ def photo_edit(request):
     post = None
   return redirect('profile')
 
+@login_required
 def add_comment(request, article_id):
   article = Article.objects.get(id = article_id)
   article_product = article.url
@@ -162,3 +153,19 @@ def add_comment(request, article_id):
     new_comment.save()
     
   return redirect('review', article_product)
+
+@login_required
+def delete_comment(request,comment_id):
+  Comment.objects.get(id=comment_id).delete()
+  return redirect('profile')
+
+@login_required
+def edit_comment(request, comment_id):
+  comment = Comment.objects.get(id=comment_id)
+  form=CommentForm(request.POST or None, instance=comment)
+  if request.POST and form.is_valid():
+    form.save()
+    return redirect('profile')
+  else:
+    return redirect ('profile')
+

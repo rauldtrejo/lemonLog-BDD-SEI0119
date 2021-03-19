@@ -103,8 +103,9 @@ def profile_edit(request):
 def review(request, review_product):
   review = Article.objects.get(url=review_product)
   comment = Comment.objects.filter(article_id = review.id)
+  number_of_comments = len(comment)
   add_comment_form = CommentForm(request.POST or None)
-  return render(request, 'article/review-expanded.html', {'review': review, 'comment': comment, 'add_comment_form': add_comment_form})
+  return render(request, 'article/review-expanded.html', {'review': review, 'comment': comment, 'add_comment_form': add_comment_form,'number_of_comments':number_of_comments})
 
 
 def profile_public(request, username):

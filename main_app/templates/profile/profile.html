@@ -10,7 +10,7 @@ bar 2/3 user comments section {% endcomment %}
         <div style="width: 100%; height: auto" class="card">
           <div class="card-image">
           {% if post  %}
-            <img class="img-fluid center-align" style="width: 100%" src="{{ post.photo.cdn_url }}-/crop/600x600/center/-/quality/lightest/" alt="">
+            <img class="img-fluid center-align" style="width: 100%" src="{{ post.photo.cdn_url }}-/stretch/fill/-/resize/800x/-/quality/lightest/" alt="">
           {% else %}
             <img
               class="center-align"
@@ -29,11 +29,11 @@ bar 2/3 user comments section {% endcomment %}
             <h5>Age: {{user_info.user_age}}</h5>
             <h5>{{user_info.location}}</h5>
           </div>
-          <div class="card-action">
+          <div class="card-action profile-edit">
             <!-- Modal Trigger -->
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal1"
+            <a class="waves-effect waves-light btn modal-trigger edit-profile-btn" href="#modal1"
               >Edit Your Info</a>
-            <a class="btn modal-trigger" href="#modal-photo"> Upload Photo</a>
+            <a class="btn modal-trigger edit-profile-btn" href="#modal-photo"> Upload Photo</a>
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
               <div class="modal-content">
@@ -47,21 +47,21 @@ bar 2/3 user comments section {% endcomment %}
               </div>
             </div>
             <div id="modal-photo" class="modal">
-              <div class="modal-content">
+              <div class="modal-content center-align">
                 {% if error_message %}
                 <p class="red-text">{{ error_message }}</p>
                 {% endif %}
-                <form action="{% url 'photo_edit' %}" method="post">
+                <form class='center-align' action="{% url 'photo_edit' %}" method="post">
                   {% csrf_token %}
                   {{ form }}
-                  <input type="submit" class="btn" value="Save"/>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Upload Picture<i class="material-icons right">send</i>
+                    </button>
                 </form>
-                {% if post %}
-                
-                  <div class="col-md-4">
-                    <img class="img-fluid" src="{{ post.photo.cdn_url }}-/crop/600x600/center/-/quality/lightest/" alt="">
+                {% if post %}       
+                  <div class="container">
+                    <h3 style='margin-top:20px;'>This is your current Profile Image</h3>
+                    <img class="img-fluid" src="{{ post.photo.cdn_url }}-/resize/600x600/-/quality/lightest/" alt="">
                   </div>
-                
                 {% endif %}
                 
               </div>
@@ -86,7 +86,7 @@ bar 2/3 user comments section {% endcomment %}
             </p>
           </div>
           <div class="card-action">
-            <a href="{% url 'review' comment.article.id %}">View Article</a>
+            <a href="{% url 'review' comment.article.url %}">View Article</a>
           </div>
         </div>
       </div>

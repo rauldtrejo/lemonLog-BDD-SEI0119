@@ -45,6 +45,7 @@ def profile(request):
   profile = Profile.objects.get(user_id=request.user.id)
   comment = Comment.objects.filter(user_id=request.user.id)
   comment_form=CommentForm(request.POST or None)
+  comment_amount=len(comment)
   user_info = Profile.objects.get(user_id=request.user.id)
   user_form = EditForm(request.POST or None, instance=user)
   profile_form=ProfileForm(request.POST or None, instance=profile)
@@ -61,6 +62,7 @@ def profile(request):
     'profile_form':profile_form,
     'comment_form':comment_form,
     'comment': comment,
+    'comment_amount': comment_amount,
     'form': form,
     'post': post
   }

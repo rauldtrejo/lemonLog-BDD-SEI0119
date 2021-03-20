@@ -1,8 +1,15 @@
 {% extends 'base.html' %} 
 {% block content %} 
-<h1>{{user.username}}'s Profile</h1>
+<div class="container username-container full-width">
+<div class="col  s12 m6 l8 teal lighten-1 full-width">
+    <h3 class="center-align white-text user-profile">{{user.username}}'s Profile</h3>
+    
+  </div>
+{% comment %} <div>
+ <h3 class="user-profile ">{{user.username}}'s Profile</h3>
+</div> {% endcomment %}
 <div style="height: 75vh" class="row">
-  <div class="col m4">
+  <div class="col m6 l4">
     <div class="row">
       <div class="col s12 m12">
         <div style="width: 100%; height: auto" class="card">
@@ -11,7 +18,7 @@
             <img
               class="img-fluid center-align"
               style="width: 100%"
-              src="{{ post.photo.cdn_url }}-/stretch/fill/-/resize/800x/-/quality/lightest/"
+              src="{{ post.photo.cdn_url }}-/stretch/fill/-/scale_crop/500x500/-/quality/lightest/"
               alt=""
             />
             {% else %}
@@ -93,8 +100,14 @@
       </div>
     </div>
   </div>
-  <div style="overflow-y: scroll; height: 100%" class="col m8">
+  <div class="col s12 m6 l8 teal lighten-1 full-width">
+    <h5 class="center-align white-text">Your comments</h5>
+    
+  </div>
+  
+  <div style="overflow-y: scroll; height: 75%" class="col m6 l8">
     <div class="col s12 m12">
+    {% if comment %}
       {% for comment in comment %}
       <div class="card horizontal">
         <div class="card-stacked">
@@ -105,13 +118,20 @@
               Posted On: {{ comment.creation_date}}
             </p>
           </div>
-          <div class="card-action">
-            <a href="{% url 'review' comment.article.url %}">View Article</a>
+          <div class="card-action profile-edit">
+            <a class="article-link center-align" href="{% url 'review' comment.article.url %}">View Article</a>
             <a
-              class="waves-effect waves-light btn modal-trigger edit-profile-btn"
+              class="waves-effect waves-light btn modal-trigger edit-profile-btn col "
               href="#edit-comment{{forloop.counter}}"
               >Edit Comment</a
             >            
+            <form method="post" class="edit-profile-btn" action="{% url 'delete_comment' comment.id %}">
+              {% csrf_token %} 
+              <button type="submit" class="waves-effect waves-light btn  col s12 ">
+                Delete
+              </button>
+              
+            </form>
             <div id="edit-comment{{forloop.counter}}" class="modal">
               <div class="modal-content">
                 {% if error_message %}
@@ -124,15 +144,19 @@
                 </form>
               </div>
             </div>
-            <form method="post" action="{% url 'delete_comment' comment.id %}">
-              {% csrf_token %} 
-              <input type="submit" class="waves-effect waves-light btn" value="Delete" />
-            </form>
           </div>
         </div>
       </div>
       {% endfor %}
+    {% else %}
+    <h5 class="center-align">You have no comments yet.</h5>
+    {% endif %}
     </div>
   </div>
-  {% endblock content %}
+      <div class="col s12 m6 l8 teal lighten-1 full-width">
+    <h6 class="center-align white-text">Your total number of comments is: {{ comment_amount}}</h6>
+    
+  </div>
 </div>
+</div>
+{% endblock content %}

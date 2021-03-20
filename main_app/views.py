@@ -45,6 +45,7 @@ def profile(request):
   profile = Profile.objects.get(user_id=request.user.id)
   comment = Comment.objects.filter(user_id=request.user.id)
   comment_form=CommentForm(request.POST or None)
+  comment_amount=len(comment)
   user_info = Profile.objects.get(user_id=request.user.id)
   user_form = EditForm(request.POST or None, instance=user)
   profile_form=ProfileForm(request.POST or None, instance=profile)
@@ -61,6 +62,7 @@ def profile(request):
     'profile_form':profile_form,
     'comment_form':comment_form,
     'comment': comment,
+    'comment_amount': comment_amount,
     'form': form,
     'post': post
   }
@@ -112,6 +114,7 @@ def profile_public(request, username):
   user = User.objects.get(username=username)
   user_info = Profile.objects.get(user_id=user.id)
   comment = Comment.objects.filter(user_id=user.id)
+  comment_amount=len(comment)
   if Post.objects.filter(user_id=user.id).order_by('-id'):
     post = Post.objects.filter(user_id=user.id).order_by('-id')[0]
   else:
@@ -121,6 +124,7 @@ def profile_public(request, username):
     'user':user, 
     'user_info':user_info, 
     'comment': comment,
+    'comment_amount': comment_amount,
     'post':post,
   }
   return render(request, 'profile/public.html', context)

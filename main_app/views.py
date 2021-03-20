@@ -114,6 +114,7 @@ def profile_public(request, username):
   user = User.objects.get(username=username)
   user_info = Profile.objects.get(user_id=user.id)
   comment = Comment.objects.filter(user_id=user.id)
+  comment_amount=len(comment)
   if Post.objects.filter(user_id=user.id).order_by('-id'):
     post = Post.objects.filter(user_id=user.id).order_by('-id')[0]
   else:
@@ -123,6 +124,7 @@ def profile_public(request, username):
     'user':user, 
     'user_info':user_info, 
     'comment': comment,
+    'comment_amount': comment_amount,
     'post':post,
   }
   return render(request, 'profile/public.html', context)

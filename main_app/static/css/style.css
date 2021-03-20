@@ -33,9 +33,15 @@ main {
     padding: 10px !important;
 }
 
-
-
-
+.article-link {
+    margin-right: 0 !important;
+}
+.card-content{
+    padding: 10px 24px 24px 24px !important;
+}
+h4, .comment-username {
+    margin-top: .1rem !important;
+}
 @media only screen and (min-width: 768px) {
     .large-screen {
         display: -webkit-box;
@@ -109,12 +115,18 @@ main {
         margin-top: 0 !important;
     }
     .col {
-        padding: 0 !important;
+        padding: 0 2.1px !important;
     }
     .row {
         margin-bottom: 0 !important;
     }
     .card {
         margin: 0 !important;
+    }
+    .comment-section {
+        padding: 0 !important;
+    }
+    .home-card {
+        margin-bottom: 10px !important;
     }
 }

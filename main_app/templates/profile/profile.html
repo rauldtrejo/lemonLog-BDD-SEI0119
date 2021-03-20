@@ -118,13 +118,20 @@
               Posted On: {{ comment.creation_date}}
             </p>
           </div>
-          <div class="card-action">
-            <a href="{% url 'review' comment.article.url %}">View Article</a>
+          <div class="card-action profile-edit">
+            <a class="article-link center-align" href="{% url 'review' comment.article.url %}">View Article</a>
             <a
-              class="waves-effect waves-light btn modal-trigger edit-profile-btn"
+              class="waves-effect waves-light btn modal-trigger edit-profile-btn col "
               href="#edit-comment{{forloop.counter}}"
               >Edit Comment</a
             >            
+            <form method="post" class="edit-profile-btn" action="{% url 'delete_comment' comment.id %}">
+              {% csrf_token %} 
+              <button type="submit" class="waves-effect waves-light btn  col s12 ">
+                Delete
+              </button>
+              
+            </form>
             <div id="edit-comment{{forloop.counter}}" class="modal">
               <div class="modal-content">
                 {% if error_message %}
@@ -137,10 +144,6 @@
                 </form>
               </div>
             </div>
-            <form method="post" action="{% url 'delete_comment' comment.id %}">
-              {% csrf_token %} 
-              <input type="submit" class="waves-effect waves-light btn" value="Delete" />
-            </form>
           </div>
         </div>
       </div>

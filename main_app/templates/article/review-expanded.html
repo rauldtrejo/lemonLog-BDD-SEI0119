@@ -29,20 +29,20 @@
       </div>
     </div>
   </div>
-  <div class="col m4 s12 teal lighten-1">
+  <div class="col m4 s12 teal lighten-1 full-width">
     <h5 class="center-align white-text">Comment Section</h5>
     <p class="center-align white-text">
       Number of Comments: {{number_of_comments}}
     </p>
   </div>
-  <div style="overflow-y: scroll; height: 100%" class="col m4 s12">
+  <div style="overflow-y: scroll; height: 75vh" class="col m4 s12 full-width comment-section">
     <div class="col s12 m12">
       {% for comment in comment %}
       <div class="card horizontal">
         <div class="card-stacked">
           <div class="card-content">
             <a href="{% url 'profile_public' comment.user.username %}"
-              ><h5>{{comment.user.username}}</h5></a
+              ><h5 class="comment-username">{{comment.user.username}}</h5></a
             >
             <p class="grey-text text-darken-1">{{comment.creation_date}}</p>
             <p>{{comment.content}}</p>
@@ -52,7 +52,7 @@
       {% endfor %}
     </div>
   </div>
-  <div>
+  <div class="full-width">
     <!-- Modal Trigger -->
     <a
       class="waves-effect waves-light btn modal-trigger col s12 m4 right hide-on-med-and-down"
@@ -82,9 +82,9 @@
     </div>
 
     <a
-      class="waves-effect waves-light btn modal-trigger col s12 m4 right hide-on-large-only"
+      class="waves-effect waves-light btn modal-trigger col s12 m4 right hide-on-large-only "
       href="#modal2"
-      >Add a Comment</a
+      > Add a Comment</a
     >
     <!-- Modal Structure -->
     <div id="modal2" class="modal bottom-sheet hide-on-large-only">

@@ -14,7 +14,7 @@
        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-      <link rel="stylesheet"  type="text/css" href=" {% static 'css/style.css/' %}">
+      <link rel="stylesheet"  type="text/css" href=" {% static 'css/style.css' %}">
       {% comment %} materialize JS {% endcomment %}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </head>
@@ -57,12 +57,14 @@
                 {% endif %}
         </ul>
     </header>
-    <main class='container'>
+    <main >
     {% block content %}
     
     {% endblock content %}
     </main>
-
+    <footer id="footer" class="page-footer">
+        <div class="right">All Rights Reserved, &copy; 2019 Lemon Log &nbsp;</div>
+    </footer>
     <!--JavaScript at end of body for optimized loading-->
     <script src={% static 'js/main.js' %}></script>
 

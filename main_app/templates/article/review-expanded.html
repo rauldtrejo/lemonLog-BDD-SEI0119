@@ -47,12 +47,16 @@
       >Add a Comment</a
     >
     <!-- Modal Structure -->
-    <div id="modal1" class="modal bottom-sheet">
+    <div id="modal1" class="modal">
       <div class="modal-content">
         <h4>Add a Comment</h4>
         <form method="post" action="{% url 'add_comment' review.id %}">
-          {% csrf_token %} {{ add_comment_form.as_p }}
-          <input type="submit" class="btn col s12 m4" value="Add Comment" />
+          {% csrf_token %} 
+          <div class="input-field col s12">
+            <textarea id="textarea2" class="materialize-textarea" data-length="120" maxlength='240' required name='content'></textarea>
+            <label for="textarea2">240 Characters Max.</label>
+          <input type="submit" class="btn col s12 m4" value="Add Comment"/>
+          </div>
         </form>
       </div>
     </div>

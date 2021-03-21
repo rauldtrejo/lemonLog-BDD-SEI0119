@@ -1,16 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% block content %}
 
-<p>Create Your Profile</p>
-<p>We want to make your experience unique!</p>
-<p>To do so, we just need a little more information about yourself.</p>
+<div class="container white-text">
+  <h1 class="amber-text text-accent-2">Create Your Profile</h1>
+  <h5>We want to make your experience unique!</h5>
+  <h5>To do so, we just need a little more information about yourself.</h5>
 
-<form method="POST" action=" {% url 'profile_creation' %} ">
-    {% csrf_token %}
-    {{profile_form.as_p}}
-    <input type="submit" class="btn" value="Create Profile">
-    <input type="hidden" name="next" value="{{ next }}">
-</form>
-
+  <form
+    class="white-text sign-up"
+    method="POST"
+    action=" {% url 'profile_creation' %} "
+  >
+    {% csrf_token %} {{profile_form.as_p}}
+    <input
+      type="submit"
+      class="btn amber accent-2 black-text full-width"
+      id="sign-up-btn"
+      value="Create Profile"
+    />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
 
 {% endblock content %}

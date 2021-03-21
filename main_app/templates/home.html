@@ -15,8 +15,9 @@
         <img  src=" {{ review.image_url}}">
       </div>
       <div class="card-content">
-        <span class="card-title">{{ review.product_name}} <span style="font-size: 14px;" class="right grey-text text-darken-1"> Author: {{ review.user.first_name }} {{ review.user.last_name }}
+        <span class="card-title">{{ review.product_name}} <span style="font-size: 14px;" class="right grey-text text-darken-1 hide-on-med-and-down"> Author: {{ review.user.first_name }} {{ review.user.last_name }}
         </span></span>
+        <p class='grey-text text-darken-1 hide-on-large-only'>Author: {{ review.user.first_name }} {{ review.user.last_name }}</p>
         <p>{{ review.content|truncatechars_html:1000}}</p>
         <p class="grey-text text-darken-1">Posted {{ review.creation_date|date_difference }} day(s) ago.</p> 
       </div>

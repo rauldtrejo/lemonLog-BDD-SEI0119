@@ -10,18 +10,19 @@
 
     {% for review in review  %}
     <div class="row">
-    <div class="card home-card ">
+    <div class="card home-card">
       <div class="card-image">
         <img  src=" {{ review.image_url}}">
       </div>
-      <div class="card-content">
-        <span class="card-title">{{ review.product_name}} <span style="font-size: 14px;" class="right grey-text text-darken-1"> Author: {{ review.user.first_name }} {{ review.user.last_name }}
+      <div class="card-content grey darken-3">
+        <span class="card-title amber-text text-accent-2">{{ review.product_name}} <span style="font-size: 14px;" class="right amber-text text-accent-2 hide-on-med-and-down"> Author: {{ review.user.first_name }} {{ review.user.last_name }}
         </span></span>
-        <p>{{ review.content|truncatechars_html:1000}}</p>
-        <p class="grey-text text-darken-1">Posted {{ review.creation_date|date_difference }} day(s) ago.</p> 
+        <p class='amber-text text-accent-1 hide-on-large-only'>Author: {{ review.user.first_name }} {{ review.user.last_name }}</p>
+        <p class='white-text'>{{ review.content|truncatechars_html:1000}}</p>
+        <p class="amber-text text-accent-1">Posted {{ review.creation_date|date_difference }} day(s) ago.</p> 
       </div>
-      <div class="card-action">
-        <a href=" {% url 'review' review.url %}">Read more</a>
+      <div class="card-action black">
+        <a href=" {% url 'review' review.url %}">Read more...</a>
       </div>
     </div>
     </div>

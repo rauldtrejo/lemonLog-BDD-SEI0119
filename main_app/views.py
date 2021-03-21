@@ -107,7 +107,8 @@ def review(request, review_product):
   comment = Comment.objects.filter(article_id = review.id)
   number_of_comments = len(comment)
   add_comment_form = CommentForm(request.POST or None)
-  return render(request, 'article/review-expanded.html', {'review': review, 'comment': comment, 'add_comment_form': add_comment_form,'number_of_comments':number_of_comments})
+  photo = Post.objects.all()
+  return render(request, 'article/review-expanded.html', {'review': review, 'comment': comment, 'add_comment_form': add_comment_form,'number_of_comments':number_of_comments, 'photo':photo})
 
 
 def profile_public(request, username):
@@ -150,9 +151,14 @@ def add_comment(request, article_id):
   article = Article.objects.get(id = article_id)
   article_product = article.url
   form = CommentForm(request.POST)
+  if Post.objects.filter(user_id=request.user.id).order_by('-id'):
+    post = Post.objects.filter(user_id=request.user.id).order_by('-id')[0]
+  else:
+    post = None
   if form.is_valid():
     new_comment = form.save(commit = False)
     new_comment.user_id = request.user.id
+    new_comment.post_id = post.id
     new_comment.article_id = article_id
     new_comment.creation_date = date.today()
     new_comment.save()

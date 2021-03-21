@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class='container'>
+<h1 class='amber-text text-accent-2 center-align'>Log In</h1>
 
-<p>Log In Page</p>
-
-<form method="POST" action=" {% url 'login' %} ">
+<form method="POST" class='white-text sign-up' action=" {% url 'login' %} ">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" class="btn" value="login">
+    <input type="submit" class="btn amber accent-2" id='sign-up-btn' value="login">
     <input type="hidden" name="next" value="{{ next }}">
 </form>
-
+</div>
 {% endblock content %}

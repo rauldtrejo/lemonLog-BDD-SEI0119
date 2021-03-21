@@ -18,17 +18,12 @@ class Article(models.Model):
     def __str__(self):
         return self.product_name
 
-class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.CharField(max_length=240)
-    creation_date = models.DateField()
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['-creation_date']
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -42,4 +37,13 @@ class Post(models.Model):
     photo = ImageField(blank=True, manual_crop="")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.CharField(max_length=240)
+    creation_date = models.DateField()
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-id']
 

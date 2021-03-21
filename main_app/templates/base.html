@@ -13,7 +13,6 @@
       <!--Import materialize.css-->
        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
       <link rel="stylesheet"  type="text/css" href=" {% static 'css/style.css' %}">
       {% comment %} materialize JS {% endcomment %}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -21,8 +20,8 @@
     <body>
     <header>
         <nav>
-            <div class="nav-wrapper">
-                <a href=" {% url 'home' %} " class="brand-logo">Lemon Log</a>
+            <div class="nav-wrapper black">
+                <a href=" {% url 'home' %} " class="brand-logo amber-text text-accent-2">Lemon Log</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{% url 'home' %}">Home</a></li>
@@ -41,19 +40,19 @@
                 </ul>
             </div>
         </nav>
-        <ul class="sidenav" id="mobile-demo">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
+        <ul class="sidenav grey darken-1 amber-text text-accent-2" id="mobile-demo">
+                <li><a class='amber-text text-accent-2' href="{% url 'home' %}">Home</a></li>
+                <li><a class='amber-text text-accent-2' href="{% url 'about' %}">About</a></li>
                 {% if user.is_superuser %}
-                <li><a href="">Create an Article</a></li>
-                <li><a href=" {% url 'profile' %} ">Profile</a></li>
-                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                <li><a class='amber-text text-accent-2' href="">Create an Article</a></li>
+                <li><a class='amber-text text-accent-2' href=" {% url 'profile' %} ">Profile</a></li>
+                <li><a class='amber-text text-accent-2' href="{% url 'logout' %}">Log Out</a></li>
                 {% elif user.is_authenticated %}
-                <li><a href=" {% url 'profile' %} ">Profile</a></li>
-                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                <li><a class='amber-text text-accent-2' href=" {% url 'profile' %} ">Profile</a></li>
+                <li><a class='amber-text text-accent-2' href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
-                <li><a href=" {% url 'login' %}">Log In</a></li>
-                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a class='amber-text text-accent-2' href=" {% url 'login' %}">Log In</a></li>
+                <li><a class='amber-text text-accent-2' href="{% url 'signup' %}">Sign Up</a></li>
                 {% endif %}
         </ul>
     </header>
@@ -62,8 +61,8 @@
     
     {% endblock content %}
     </main>
-    <footer id="footer" class="page-footer">
-        <div class="right">All Rights Reserved, &copy; 2019 Lemon Log &nbsp;</div>
+    <footer id="footer" class="page-footer black">
+        <div class="right amber-text text-accent-2">All Rights Reserved, &copy; 2021 Lemon Log &nbsp;</div>
     </footer>
     <!--JavaScript at end of body for optimized loading-->
     <script src={% static 'js/main.js' %}></script>

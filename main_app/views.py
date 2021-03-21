@@ -163,7 +163,7 @@ def add_comment(request, article_id):
     user_photo = Post.objects.filter(user_id=request.user.id).order_by('-id')[0]
   # The following line is hardcoded to a default placeholder image in the database
   else:
-    user_photo = Post.objects.get(id=15)
+    user_photo = Post.objects.get(id=1)
   if comment_form.is_valid():
     new_comment = comment_form.save(commit = False)
     new_comment.user_id = request.user.id
@@ -183,7 +183,7 @@ def delete_comment(request,comment_id):
 def edit_comment(request, comment_id):
   comment = Comment.objects.get(id=comment_id)
   comment_form = CommentForm(request.POST or None, instance=comment)
-  if request.POST and form.is_valid():
+  if request.POST and comment_form.is_valid():
     comment_form.save()
     return redirect('profile')
   else:

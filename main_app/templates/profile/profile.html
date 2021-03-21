@@ -1,0 +1,195 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container username-container full-width">
+  <div class="col s12 m6 amber accent-2 full-width">
+    <h3 class="center-align black-text user-profile">
+      {{user.username}}'s Profile
+    </h3>
+  </div>
+  <div class="row profile-vh">
+    <div class="col m6 l4">
+      <div class="row">
+        <div class="col s12 m12">
+          <div class="card profile-card black">
+            <div class="card-image">
+              {% if post %}
+              <img
+                class="img-fluid center-align"
+                style="width: 100%"
+                src="{{ post.photo.cdn_url }}-/stretch/fill/-/scale_crop/500x500/-/quality/lightest/"
+                alt=""
+              />
+              {% else %}
+              <img
+                class="center-align"
+                style="width: 100%"
+                src="https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png"
+              />
+              {% endif %}
+            </div>
+            <div class="card-content flow-text">
+              <span class="card-title amber-text text-accent-2"
+                >{{user.username}}</span
+              >
+              <h5 class='white-text'>{{user.first_name}} {{user.last_name}}</h5>
+              <h5 class='white-text'>{{user.email}}</h5>
+              <h5 class='white-text'>User Joined:</h5>
+              <h5 class='white-text'>{{user.date_joined| date:"F d Y" }}</h5>
+              <h5 class='white-text'>Age: {{user_info.user_age}}</h5>
+              <h5 class='white-text'>{{user_info.location}}</h5>
+            </div>
+            <div class="card-action grey darken-3 profile-edit">
+              <!-- Modal Trigger -->
+              <a
+                class="black-text waves-effect waves-amber amber accent-2 btn modal-trigger edit-profile-btn"
+                href="#modal1"
+                >Edit Your Info</a
+              >
+              <a class="black-text wave-effect waves-amber amber accent-2 btn modal-trigger edit-profile-btn" href="#modal-photo">
+                Upload Photo</a
+              >
+              <!-- Modal Structure -->
+              <div id="modal1" class="modal">
+                <div class="modal-content">
+                  {% if error_message %}
+                  <p class="red-text">{{ error_message }}</p>
+                  {% endif %}
+                  <form method="post" action="{% url 'profile_edit' %}">
+                    {% csrf_token %} 
+                    {{ user_form.as_p }} 
+                    {{ profile_form.as_p}}
+                    <input type="submit" class="btn black-text amber accent-2" value="Edit" />
+                  </form>
+                </div>
+              </div>
+              <div id="modal-photo" class="modal">
+                <div class="modal-content center-align">
+                  {% if error_message %}
+                  <p class="red-text">{{ error_message }}</p>
+                  {% endif %}
+                  <form
+                    class="center-align"
+                    action="{% url 'photo_edit' %}"
+                    method="post"
+                  >
+                    {% csrf_token %} {{ form }}
+                    <button
+                      class="btn waves-effect waves-amber amber accent-2 black-text upload-btn"
+                      type="submit"
+                      name="action"
+                    >
+                      Upload Picture<i class="material-icons right">send</i>
+                    </button>
+                  </form>
+                  {% if post %}
+                  <div class="container">
+                    <h3 class='picture-modal'>
+                      This is your current Profile Image
+                    </h3>
+                    <img
+                      class="img-fluid"
+                      style="width:100%;"
+                      src="{{ post.photo.cdn_url }}-/resize/600x600/-/quality/lightest/"
+                      alt=""
+                    />
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l8 amber accent-2 full-width">
+      <h5 class="center-align black-text">Your comments</h5>
+    </div>
+    <div class="col s12 m6 l8 profile-comment-section">
+      <div class="col s12 m12">
+        {% if comment %} {% for comment in comment %}
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content black">
+              <h4 class='amber-text text-accent-2'>{{ comment.article.product_name}}</h4>
+              <p class='white-text'>{{ comment.content }}</p>
+              <p class="amber-text text-accent-1">
+                Posted On: {{ comment.creation_date}}
+              </p>
+            </div>
+            <div class="card-action grey darken-3 profile-edit">
+              <a
+                class="article-link center-align"
+                href="{% url 'review' comment.article.url %}"
+                >View Article</a
+              >
+              <a
+                class="waves-effect waves-amber amber accent-2 black-text btn modal-trigger edit-profile-btn col"
+                href="#edit-comment{{forloop.counter}}"
+                >Edit Comment</a
+              >
+              <a
+                class="waves-effect waves-amber amber accent-2 black-text btn modal-trigger edit-profile-btn col"
+                href="#delete-comment"
+                >Delete Comment</a
+              >
+              <div id="delete-comment" class="modal">
+                <div class="modal-content">
+                  {% if error_message %}
+                  <p class="red-text">{{ error_message }}</p>
+                  {% endif %}
+                  <p>Are You Sure You Want To Delete Your Comment?</p>
+              <form
+                method="post"
+                class="edit-profile-btn"
+                action="{% url 'delete_comment' comment.id %}"
+              >
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="waves-effect waves-amber amber accent-2 black-text btn"
+                >
+                  Delete
+                </button>
+              </form>
+                </div>
+              </div>
+              <div id="edit-comment{{forloop.counter}}" class="modal">
+                <div class="modal-content">
+                  {% if error_message %}
+                  <p class="red-text">{{ error_message }}</p>
+                  {% endif %}
+                  <form
+                    method="post"
+                    action="{% url 'edit_comment' comment.id %}"
+                  >
+                    {% csrf_token %}
+                    <div class="input-field col s12">
+                      <textarea
+                        id="textarea2"
+                        class="materialize-textarea"
+                        data-length="120"
+                        maxlength="240"
+                        required
+                        name="content"
+                      >{{comment.content}}</textarea>
+                      <label for="textarea2">240 Characters Max.</label>
+                      <input type="submit" class="btn amber accent-2 black-text col s12 m4" value="Add Comment" />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <h5 class="center-align">You have no comments yet.</h5>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col s12 amber accent-2 full-width">
+      <h6 class="center-align black-text">
+        Your total number of comments is: {{ comment_amount}}
+      </h6>
+    </div>
+  </div>
+</div>
+{% endblock content %}

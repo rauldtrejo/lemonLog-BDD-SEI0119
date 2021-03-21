@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container username-container full-width">
-  <div class="col s12 m6 l8 teal lighten-1 full-width">
-    <h3 class="center-align white-text user-profile">
+  <div class="col s12 m6 l8 amber accent-2 full-width">
+    <h3 class="center-align black-text user-profile">
       {{user.username}}'s Profile
     </h3>
   </div>
@@ -14,7 +14,7 @@
     <div class="col m6 l4">
       <div class="row">
         <div class="col s12 m12">
-          <div class="card profile-card">
+          <div class="card profile-card black">
             <div class="card-image">
               {% if post %}
               <img
@@ -31,8 +31,8 @@
               />
               {% endif %}
             </div>
-            <div class="card-content">
-              <span class="card-title blue-text text-darken-2"
+            <div class="card-content white-text">
+              <span class="card-title amber-text text-accent-2"
                 >{{user.username}}</span
               >
               <h5>{{user.first_name}} {{user.last_name}}</h5>
@@ -45,22 +45,22 @@
         </div>
       </div>
     </div>
-    <div class="col s12 m6 l8 teal lighten-1 full-width">
-      <h5 class="center-align white-text">{{user.username}}'s comments</h5>
+    <div class="col s12 m6 l8 amber accent-2 full-width">
+      <h5 class="center-align black-text">{{user.username}}'s comments</h5>
     </div>
     <div class="col s12 m6 l8 profile-comment-section">
       <div class="col s12 m12">
         {% if comment %} {% for comment in comment %}
         <div class="card horizontal">
           <div class="card-stacked">
-            <div class="card-content">
-              <h4>{{ comment.article.product_name}}</h4>
+            <div class="card-content black white-text">
+              <h4 class='amber-text text-accent-2'>{{ comment.article.product_name}}</h4>
               <p>{{ comment.content }}</p>
-              <p class="grey-text text-darken-1">
+              <p class="amber-text text-accent-1">
                 Posted On: {{ comment.creation_date}}
               </p>
             </div>
-            <div class="card-action profile-edit">
+            <div class="card-action grey darken-3 profile-edit">
               <a
                 class="article-link center-align"
                 href="{% url 'review' comment.article.url %}"
@@ -74,8 +74,8 @@
         {% endif %}
       </div>
     </div>
-    <div class="col s12  teal lighten-1 full-width">
-      <h6 class="center-align white-text">
+    <div class="col s12  amber accent-2 full-width">
+      <h6 class="center-align black-text">
         {{user.username}}'s number of comments is: {{ comment_amount}}
       </h6>
     </div>

@@ -2,12 +2,36 @@
 .container {
     margin-top: 2% !important;
 }
+.sign-up input{
+    color:white !important;
+}
+.sign-up label{
+    color: #ffd740;
+}
+#sign-up-btn{
+    color: black !important;
+}
+.uploadcare--widget__button_type_open{
+    background-color: #ffd740 !important;
+    color: black !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    padding-top: 6px !important;
+    padding-bottom: 8px !important;
+    border-radius: 2px !important;
+    text-transform: uppercase;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+.lemon-background{
+    background-color: #202020 !important;
+}
 
 .upload-btn{
     margin:10px;
 }
 .article-container {
-    margin: 2% 2% 0 2%;
+    margin: 0% 1% 0 1%;
 }
 .article-card{
     width: 100%; 
@@ -44,6 +68,9 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: url('https://w.wallhaven.cc/full/13/wallhaven-13856g.jpg') !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed;
 }
 
 main {
@@ -63,10 +90,17 @@ main {
     padding: 10px 24px 24px 24px !important;
 }
 h4, .comment-username {
-    margin-top: .1rem !important;
+    margin: 0 !important;
 }
 h3{
     margin-top: 20px;
+}
+.comment-username-1{
+    margin-top: 12px !important;
+}
+.brand-logo{
+    padding-left: 20px !important;
+    color: #FFDF6C !important;
 }
 @media only screen and (min-width: 768px) {
     .large-screen {
@@ -161,5 +195,8 @@ h3{
     }
     .picture-modal{
         font-size: 15px;
+    }
+    .comment-username-1{
+    margin-top: 20px !important;
     }
 }

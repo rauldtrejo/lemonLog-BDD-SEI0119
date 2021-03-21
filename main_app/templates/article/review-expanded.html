@@ -24,7 +24,7 @@
             <h6 class="amber-text text-accent-1">{{review.brand}} - {{review.product_name}}</h6>
             <p class="amber-text text-accent-1">Our Rating: {{ review.rating }}/10</p>
             <p class="amber-text text-accent-1">
-              Posted On: {{review.creation_date}}
+              Posted On: {{review.creation_date}}, By: {{review.user.first_name}} {{review.user.last_name}}
             </p>
             <!-- fix the text so its justified -->
             <p class='white-text'>{{review.content}}</p>
@@ -65,7 +65,7 @@
         <div class="card-stacked">
           <div class="card-content black">
           <div class="row">
-            <a href="{% url 'profile_public' comment.user.username %}"><img src="{{comment.post.photo.cdn_url}}" alt="" class="circle responsive-img col s4" style='max-width:75px'></a>
+            <a href="{% url 'profile_public' comment.user.username %}"><img src="{{comment.post.photo.cdn_url}}-/stretch/fill/-/scale_crop/500x500/-/quality/lightest/" alt="" class="circle col s4" style='max-width:75px'></a>
             <a class='amber-text text-accent-2' href="{% url 'profile_public' comment.user.username %}"
               ><h5 class="col s8 comment-username-1">{{comment.user.username}}</h5></a
             >
@@ -77,7 +77,7 @@
       </div>
       {% endfor %}
       {% else %}
-      <p class='center-align'>Looks like there's no comments, be the first to write one!</p>
+      <p class='center-align white-text'>Looks like there's no comments, be the first to write one!</p>
       {% endif %}
     </div>
   </div>

@@ -1,12 +1,11 @@
 {%  load static  %}
-
 <!DOCTYPE html>
 <html lang="en">
-  
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Lemon Log</title>
+        <link rel="shortcut icon" type='image/png' href="{% static 'favicon.ico' %}">
         {{ form.media }}
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -58,7 +57,7 @@
     </header>
     <main >
     {% block content %}
-    
+    {% comment %} This is where the content gets put from other templates {% endcomment %}
     {% endblock content %}
     </main>
     <footer id="footer" class="page-footer black">
@@ -66,6 +65,5 @@
     </footer>
     <!--JavaScript at end of body for optimized loading-->
     <script src={% static 'js/main.js' %}></script>
-
     </body>
 </html>

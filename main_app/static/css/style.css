@@ -1,202 +1,199 @@
-
 .container {
-    margin-top: 2% !important;
+  margin-top: 2% !important;
 }
-.sign-up input{
-    color:white !important;
+.sign-up input {
+  color: white !important;
 }
-.sign-up label{
-    color: #ffd740;
+.sign-up label {
+  color: #ffd740;
 }
-#sign-up-btn{
-    color: black !important;
+#sign-up-btn {
+  color: black !important;
 }
-.uploadcare--widget__button_type_open{
-    background-color: #ffd740 !important;
-    color: black !important;
-    padding-left: 40px !important;
-    padding-right: 40px !important;
-    padding-top: 6px !important;
-    padding-bottom: 8px !important;
-    border-radius: 2px !important;
-    text-transform: uppercase;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
-}
-
-.lemon-background{
-    background-color: #202020 !important;
+.uploadcare--widget__button_type_open {
+  background-color: #ffd740 !important;
+  color: black !important;
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+  padding-top: 6px !important;
+  padding-bottom: 8px !important;
+  border-radius: 2px !important;
+  text-transform: uppercase;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+    0 1px 5px 0 rgb(0 0 0 / 20%);
 }
 
-.upload-btn{
-    margin:10px;
+.lemon-background {
+  background-color: #202020 !important;
+}
+
+.upload-btn {
+  margin: 10px;
 }
 .article-container {
-    margin: 0% 1% 0 1%;
+  margin: 0% 1% 0 1%;
 }
-.article-card{
-    width: 100%; 
-    height: 92.5vh; 
-    overflow-y: scroll
+.article-card {
+  width: 100%;
+  height: 92.5vh;
+  overflow-y: scroll;
 }
-.comment-section{
-    overflow-y: scroll; 
-    height: 80vh
+.comment-section {
+  overflow-y: scroll;
+  height: 80vh;
 }
-.profile-vh{
-    height: 87vh
+.profile-vh {
+  height: 87vh;
 }
-.profile-card{
-    width: 100%; 
-    height: auto
+.profile-card {
+  width: 100%;
+  height: auto;
 }
-.profile-comment-section{
-    overflow-y: scroll; 
-    height: 100%
+.profile-comment-section {
+  overflow-y: scroll;
+  height: 100%;
 }
-
 
 .your-comment {
-    margin-left: 10px !important;
-}  
+  margin-left: 10px !important;
+}
 
 footer {
-    padding-top: 0;
-    text-align: right;
+  padding-top: 0;
+  text-align: right;
 }
 
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    background-image: url('https://w.wallhaven.cc/full/13/wallhaven-13856g.jpg') !important;
-    background-repeat: no-repeat !important;
-    background-attachment: fixed;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-image: url("https://w.wallhaven.cc/full/13/wallhaven-13856g.jpg") !important;
+  background-repeat: repeat !important;
+  background-attachment: fixed;
 }
 
 main {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 #footer {
-    padding: 5px;
-}    
+  padding: 5px;
+}
 .user-profile {
-    padding: 10px !important;
+  padding: 10px !important;
 }
 
 .article-link {
-    margin-right: 0 !important;
+  margin-right: 0 !important;
 }
-.card-content{
-    padding: 10px 24px 24px 24px !important;
+.card-content {
+  padding: 10px 24px 24px 24px !important;
 }
-h4, .comment-username {
-    margin: 0 !important;
+h4,
+.comment-username {
+  margin: 0 !important;
 }
-h3{
-    margin-top: 20px;
+h3 {
+  margin-top: 20px;
 }
-.comment-username-1{
-    margin-top: 12px !important;
+.comment-username-1 {
+  margin-top: 12px !important;
 }
-.brand-logo{
-    padding-left: 20px !important;
-    color: #FFDF6C !important;
+.brand-logo {
+  padding-left: 20px !important;
+  color: #ffdf6c !important;
 }
 @media only screen and (min-width: 768px) {
-    .large-screen {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-    }
-    .large-screen img {
-        border-radius: 2px 0 0 2px;
-        max-width: 100%;
-        width: auto;
-    }
-    .large-screen .l-content {
-        padding: 15px 5px 5px 15px;
-       
-    }
-    .large-screen .l-action {
-        padding: 5px 15px 5px;
-    }
-    .large-screen .l-content .l-title {
-        margin-bottom: 0px;
-    }
-    .profile-edit{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
+  .large-screen {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .large-screen img {
+    border-radius: 2px 0 0 2px;
+    max-width: 100%;
+    width: auto;
+  }
+  .large-screen .l-content {
+    padding: 15px 5px 5px 15px;
+  }
+  .large-screen .l-action {
+    padding: 5px 15px 5px;
+  }
+  .large-screen .l-content .l-title {
+    margin-bottom: 0px;
+  }
+  .profile-edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 @media only screen and (min-width: 992px) {
-   .l-action {
+  .l-action {
     margin-top: 35px;
-   }
-    .profile-edit{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    } 
-} 
+  }
+  .profile-edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
 
 @media only screen and (min-width: 1200px) {
-    .l-action {
-     margin-top: 130px;
-    } 
-} 
+  .l-action {
+    margin-top: 130px;
+  }
+}
 @media only screen and (min-width: 360px) {
-    .profile-edit{
-        display: flex;
-        flex-direction: column;
-        padding: 10px !important;
-    }
-    .edit-profile-btn{
-        margin: 5px !important;
-    }
-} 
+  .profile-edit {
+    display: flex;
+    flex-direction: column;
+    padding: 10px !important;
+  }
+  .edit-profile-btn {
+    margin: 5px !important;
+  }
+}
 @media only screen and (max-width: 500px) {
-    
-    .full-width {
-        width: 100vw !important;
-        position: relative;
-        left: 50% !important;
-        right: 50% !important;
-        margin-left: -50vw !important;
-        overflow-x: hidden;
-        
-    }
-    .user-profile {
-        margin: 0 !important;
-    }
-    .username-container {
-        margin-top: 0 !important;
-    }
-    .col {
-        padding: 0 3px !important;
-    }
-    .row {
-        margin-bottom: 0 !important;
-    }
-    .card {
-        margin: 0 !important;
-    }
-    .comment-section {
-        padding: 0 !important;
-        height: 82vh;
-    }
-    .article-card{
-    height: 72vh; 
-    }
-    .home-card {
-        margin-bottom: 10px !important;
-    }
-    .picture-modal{
-        font-size: 15px;
-    }
-    .comment-username-1{
+  .full-width {
+    width: 100vw !important;
+    position: relative;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    overflow-x: hidden;
+  }
+  .user-profile {
+    margin: 0 !important;
+  }
+  .username-container {
+    margin-top: 0 !important;
+  }
+  .col {
+    padding: 0 3px !important;
+  }
+  .row {
+    margin-bottom: 0 !important;
+  }
+  .card {
+    margin: 0 !important;
+  }
+  .comment-section {
+    padding: 0 !important;
+    height: 82vh;
+  }
+  .article-card {
+    height: 72vh;
+  }
+  .home-card {
+    margin-bottom: 10px !important;
+  }
+  .picture-modal {
+    font-size: 15px;
+  }
+  .comment-username-1 {
     margin-top: 20px !important;
-    }
+  }
 }

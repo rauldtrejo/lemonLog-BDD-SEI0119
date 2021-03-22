@@ -1,12 +1,11 @@
 # lemonLog-BDD-SEI0119
 # Lemon Log
 
-Lemon Log is a technology review site, where authors of the site can write and publish posts and users of the site can comment on articles. The site allows all users to view and explore home page and about page, but only logged in users (users with an account) can create, edit and delete their own comments. 
+Lemon Log is a technology review site, where authors of the site can write and publish posts and users of the site can comment on articles. The site allows all users to view and explore home page and about page, but only logged in users (users with an account) can create, edit and delete their own comments.
 
 https://lemonlogbdd.herokuapp.com/
 
 ## Screenshots
-
 
 ## Technologies Used
 - Python
@@ -37,7 +36,7 @@ A user should be able to:
 - On the homepage: 
     - See review content truncated to 1000 characters max, with a link to view more.
     - See a relative published date, e.g. "2 days ago".
-    -
+    
 ### Sprint 3: Validations & Authorization Bonuses:
 A user should be able to:
 - View an error message when form validations fail:
@@ -48,10 +47,12 @@ A user should be able to:
 ## Data Models (ERD)
 ![ERD](https://trello-attachments.s3.amazonaws.com/604fce17ff74031564d6dc8a/933x703/17449f828e34d113e4ed59d6ac47be8c/Screenshot_from_2021-03-15_14-13-40.png)
 
-
-
 ## Wireframes
 The following wireframe was created to supplement the the initial wireframes provided by the [client](https://git.generalassemb.ly/wc-sei-0119/project-3-django-client-project/tree/master/tech-review-wrieframes). 
+
+Here is a photo of all of our wireframes for our mobile site ![Mobile](https://trello-attachments.s3.amazonaws.com/604bece49321c17546f3777b/604eacc2f1ce031c5101d081/f960ea00272fd2c8daf4acd07153054d/Screen_Shot_2021-03-21_at_4.02.17_PM.png)
+
+We ended up going with a slightly different different design in the end. Since we were using materialze, we were slighly less familar with accomplishing media queries. Instead of spending project time on that, we figured we would ensure that we could get to the other bonuses with functionality. 
 
 Profile Page
 
@@ -59,14 +60,17 @@ Profile Page
 
 ## Major Hurdles
 - Adding a third party app as uploadcare to allow the user to upload photos to the profile was relatively easy but figuring out how to retrieve one photo from the database to display it in the profile and reviews/comments page required major debugging. 
-- 
+- Figuring out how to create a responsive design with materialize.
 
 ## Major Victories
-- Achieving full CRUD functionality 
-
-
-
+- Achieving full CRUD functionality.
+- Completing sprints on time in an orderly fashion.
+- Excellent communication & collaboration.
+- Never having substantial merge conflicts.
+- Establishing a solid design with Materialize.
 
 ## Future Features
-
-- App would have full responsiveness for very small mobiles and tablets. 
+- App would be fully responsive for very small mobiles and tablets. 
+- users could message one another individually.
+- a sale tab that would allow users to buy/sell items on the site.
+- use AWS for deployment.

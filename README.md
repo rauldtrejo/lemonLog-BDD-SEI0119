@@ -53,8 +53,12 @@ The following wireframe was created to supplement the the initial wireframes pro
 Here is a photo of all of our wireframes for our mobile site ![Mobile](https://trello-attachments.s3.amazonaws.com/604bece49321c17546f3777b/604eacc2f1ce031c5101d081/f960ea00272fd2c8daf4acd07153054d/Screen_Shot_2021-03-21_at_4.02.17_PM.png)
 
 These are the Home, reviews, and profile page:
+
+Home:
 ![Home](https://trello-attachments.s3.amazonaws.com/604bece49321c17546f3777b/6057fb6ffdf8a4459dac342f/495c932284c780b12fa0cfb3ed0145f6/Screen_Shot_2021-03-21_at_7.07.50_PM.png)
+Reviews:
 ![Reviews](https://trello-attachments.s3.amazonaws.com/604bece49321c17546f3777b/6057fb6ffdf8a4459dac342f/db8d586e476d0d41ec40e6eba35a1cd2/Screen_Shot_2021-03-21_at_7.12.06_PM.png)
+Profile:
 ![Profile](https://trello-attachments.s3.amazonaws.com/604bece49321c17546f3777b/6057fb6ffdf8a4459dac342f/3067ae2e8a92ab9ee0e710aeeea08ac6/Screen_Shot_2021-03-21_at_7.18.30_PM.png)
 
 We ended up going with a slightly different different design in the end. Since we were using materialze, we were slighly less familar with accomplishing media queries. Instead of spending project time on that, we figured we would ensure that we could get to the other bonuses with functionality. 

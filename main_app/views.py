@@ -65,7 +65,7 @@ def profile(request):
     'comment_form':comment_form,
     'comment': comment,
     'comment_amount': comment_amount,
-    'photo_upload_form': photo_upload_form,
+    'form': photo_upload_form,
     'user_photo': user_photo
   }
   return render(request, 'profile/profile.html', context)

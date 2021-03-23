@@ -35,6 +35,24 @@ Profile Mobile:
 Profile Comments Mobile:
 ![Mobile-Comments](https://trello-attachments.s3.amazonaws.com/6057fb6ffdf8a4459dac342f/750x1624/f0f8efc2d51981f9094e57f332834841/Screen_Shot_2021-03-21_at_7.53.10_PM.png)
 
+## Install Instructions
+
+Fork and clone repo to your local computer.
+RUN 
+```python3 -m venv .env```
+
+THEN 
+``` source .env/bin/activate```
+```pip3 install -r requirements.txt```
+
+After that
+
+```createdb lemonLog```
+```python3 manage.py migrate```
+
+You should now be able to run the project locally by using the command ```python3 manage.py runserver``` and opening localhost:8000 on your browser.
+
+
 ## Technologies Used
 - Python
 - PostgreSQL
